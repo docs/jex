@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Breathe new life into old Jekyll sites",
   "bin": "cli.js",
-  "repository": "https://github.com/zeke/jexpress",
+  "repository": "https://github.com/zeke/jex",
   "author": "zeke",
   "license": "MIT",
   "dependencies": {
