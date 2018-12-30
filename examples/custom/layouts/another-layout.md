@@ -1,4 +1,4 @@
-<body class="another-layout">
+<body id="another-layout">
 
   <h1>Another Layout</h1>
 
