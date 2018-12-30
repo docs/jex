@@ -2,12 +2,11 @@
   "name": "jexpress",
   "version": "1.0.0",
   "description": "Breathe new life into old Jekyll sites",
-  "main": "index.js",
+  "bin": "cli.js",
   "repository": "https://github.com/zeke/jexpress",
   "author": "zeke",
   "license": "MIT",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.4",
     "flat": "^4.1.0",
     "gray-matter": "^4.0.1",
@@ -18,8 +17,21 @@
     "minimist": "^1.2.0",
     "walk-sync": "^0.3.3"
   },
-  "bin": "cli.js",
   "devDependencies": {
-    "standard": "^12.0.1"
+    "cheerio": "^1.0.0-rc.2",
+    "got": "^9.5.0",
+    "jest": "^23.6.0",
+    "nodemon": "^1.18.9",
+    "standard": "^12.0.1",
+    "tree-kill": "^1.2.1"
+  },
+  "scripts": {
+    "test": "jest && standard",
+    "lint": "standard --fix"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
   }
 }
