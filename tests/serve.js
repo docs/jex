@@ -9,6 +9,11 @@ async function get (route) {
   return $
 }
 
+async function getJSON (route) {
+  const { body } = await got(`http://localhost:4000${route}`, { json: true })
+  return body
+}
+
 describe('basic example', () => {
   let server
   beforeAll(async (done) => {
@@ -43,9 +48,14 @@ describe('custom example', () => {
   })
 
   describe('data', () => {
-    test('.json files', async () => {
-      const $ = await get('/')
-      expect($.text().includes('Here comes some data: wonka')).toBe(true)
+    test('is ingested from JSON, YML, and YAML files', async () => {
+      const { data } = await getJSON('/?json')
+      const expected = {
+        good_ol_json: { acronym: 'JavaScript Object Notation' },
+        yaml_with_an_a: { stance: 'I spell it YAML' },
+        yaml_with_no_a: { stance: 'I spell it YML' }
+      }
+      expect(data).toEqual(expected)
     })
   })
 
