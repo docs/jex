@@ -21,7 +21,7 @@ const defaults = {
   dataFileFilter: (file) => { return true }
 }
 
-const configFilePath = path.join(baseDir, 'jexpress.js')
+const configFilePath = path.join(baseDir, 'jex.js')
 const config = fs.existsSync(configFilePath) ? require(configFilePath) : {}
 
 // precedence: cli args > config file > defaults
