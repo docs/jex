@@ -1,5 +1,7 @@
 ---
 layout: another-layout
+redirects:
+  - '/old-fancy'
 permalinks:
   - '/fancy'
   - '/even-fancier'

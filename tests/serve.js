@@ -3,9 +3,9 @@ const got = require('got')
 const exec = require('../lib/exec')
 
 async function get (route) {
-  const { body } = await got(`http://localhost:4000${route}`)
-  const $ = cheerio.load(body, { xmlMode: true })
-  // $.res = Object.assign({}, res)
+  const res = await got(`http://localhost:4000${route}`, { followRedirect: false })
+  const $ = cheerio.load(res.body, { xmlMode: true })
+  $.res = Object.assign({}, res)
   return $
 }
 
@@ -93,6 +93,18 @@ describe('custom example', () => {
       const context = await getJSON('/fancy?json')
       expect(context.page.permalinks.includes('/fancy-customized-at-runtime-permalink')).toBe(true)
     })
+  })
+
+  describe('redirects', () => {
+    test('page-level redirects in frontmatter', async () => {
+      const { res } = await get('/old-fancy')
+      expect(res.headers.location).toBe('/fancy')
+    })
+
+    // test('global redirects object in jexConfig', async () => {
+    //   const { res } = await get('/old-global-fancy')
+    //   expect(res.headers.location).toBe('/fancy')
+    // })
   })
 
   // 404

@@ -4,7 +4,7 @@ module.exports = {
       page.permalinks.push('/fancy-customized-at-runtime-permalink')
     }
   },
-  afterContext: (req, res, next) => {
+  afterContextualize: (req, res, next) => {
     req.context.modifiedByMiddleware = true
     next()
   },
