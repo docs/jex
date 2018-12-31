@@ -59,17 +59,19 @@ describe('custom example', () => {
     })
   })
 
-  test('custom default layout', async () => {
-    const $ = await get('/')
-    expect($.text().includes('I am a new default.')).toBe(true)
+  describe('layouts', () => {
+    test('custom default layout', async () => {
+      const $ = await get('/')
+      expect($.text().includes('I am a new default.')).toBe(true)
+    })
+
+    test('custom layout', async () => {
+      const $ = await get('/fancy')
+      expect($('body#another-layout').length).toBe(1)
+    })
   })
 
-  test('custom layout', async () => {
-    const $ = await get('/fancy')
-    expect($('body#another-layout').length).toBe(1)
-  })
-
-  describe('custom middleware', async () => {
+  describe('middleware', async () => {
     test('afterContext', async () => {
       const context = await getJSON('/?json')
       expect(context.modifiedByMiddleware).toBe(true)
@@ -78,6 +80,18 @@ describe('custom example', () => {
     test('beforeRender', async () => {
       const context = await getJSON('/?json')
       expect(context.page.modifiedByMiddleware).toBe(true)
+    })
+  })
+
+  describe('permalinks', async () => {
+    test('can be set in frontmatter', async () => {
+      const context = await getJSON('/fancy?json')
+      expect(context.page.permalinks.includes('/even-fancier')).toBe(true)
+    })
+
+    test('can be set using jexConfig.afterPageInitialized', async () => {
+      const context = await getJSON('/fancy?json')
+      expect(context.page.permalinks.includes('/fancy-customized-at-runtime-permalink')).toBe(true)
     })
   })
 
