@@ -17,7 +17,7 @@
     "liquid-node": "^3.0.0",
     "lodash": "^4.17.11",
     "minimist": "^1.2.0",
-    "walk-sync": "^0.3.3"
+    "walk-sync": "^1.0.1"
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.2",
@@ -29,7 +29,8 @@
   },
   "scripts": {
     "test": "jest && standard",
-    "lint": "standard --fix"
+    "lint": "standard --fix",
+    "update-deps": "npx updtr"
   },
   "standard": {
     "env": [
