@@ -1,6 +1,10 @@
 module.exports = {
-  beforeContext: (req, res, next) => {
-    // console.log('I am beforeContext')
+  afterContext: (req, res, next) => {
+    req.context.modifiedByMiddleware = true
+    next()
+  },
+  beforeRender: (req, res, next) => {
+    req.context.page.modifiedByMiddleware = true
     next()
   }
 }

@@ -19,6 +19,5 @@ jex serve <sitedir>
 - `dataFileFilter`: [Function: dataFileFilter],
 - `createPermalinks (page)`
 - Express Middleware
-  - `beforeContext (req, res, next)`
   - `afterContext (req, res, next)` 
-  - `beforeRenderPage (req, res, next)` 
+  - `beforeRender (req, res, next)` 

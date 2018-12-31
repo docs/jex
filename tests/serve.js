@@ -69,10 +69,19 @@ describe('custom example', () => {
     expect($('body#another-layout').length).toBe(1)
   })
 
+  describe('custom middleware', async () => {
+    test('afterContext', async () => {
+      const context = await getJSON('/?json')
+      expect(context.modifiedByMiddleware).toBe(true)
+    })
+
+    test('beforeRender', async () => {
+      const context = await getJSON('/?json')
+      expect(context.page.modifiedByMiddleware).toBe(true)
+    })
+  })
+
   // 404
   // custom 404
-  // .yml data files
-  // .yaml data files
-  // .json data files
   // layouts have access to context
 })
