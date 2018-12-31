@@ -55,14 +55,15 @@ module.exports = {
 
 ## Config Options
 
-- [`pagesDir`](#pages-dir)
-- [`dataDir`](#data-dir)
-- [`layoutsDir`](#layouts-dir)
-- [`pageFileFilter()`](#page-file-filter)
-- [`dataFileFilter()`](#data-file-filter)
-- [`createPermalinks()`](#create-permalinks)
-- [`afterContextualize()`](#after-contextualize)
-- [`beforeRender()`](#before-render)
+- [`pagesDir`](#pagesdir)
+- [`dataDir`](#datadir)
+- [`layoutsDir`](#layoutsdir)
+- [`pageFileFilter()`](#pagefilefilterfilename)
+- [`dataFileFilter()`](#datafilefilterfilename)
+- [`createPermalinks()`](#createpermalinkspage)
+- [`afterContextualize()`](#aftercontextualizereq-res-next)
+- [`beforeRender()`](#beforerenderreq-res-next)
+- [`redirects`](#redirects)
 
 ### `pagesDir`
 
