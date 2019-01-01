@@ -1,6 +1,26 @@
-# jex
+# jex 🐢🚀
 
-> Breathe new life into old Jekyll sites
+> Breathing new life into old Jekyll sites
+
+`jex` is a Node.js module for building dynamic and static websites. It draws 
+inspiration from Jekyll, a Ruby tool for creating static websites.
+
+Similarities to Jekyll:
+
+- Write your web pages in Markdown (or HTML).
+- Add JSON and YML files to a data directory for use with your content.
+- Use the Liquid templating language for dynamic rendering.
+- Use YAML frontmatter to add metadata to your pages.
+- Use multiple layouts.
+- Add redirects when your URLs change.
+
+Differences from Jekyll:
+
+- **Node.js**: jex is a Node.js module written in JavaScript. Jekyll is written in Ruby.
+- **Dynamic** or **Static**: jex apps can be exported as static websites, or they can be run as web servers with Express under the hood.
+- **Middleware**: jex provides hooks for 
+- **Babel**: Write your browser code using the latest flavor of JavaScript (ES6, ES2018, etc), and it is dynamically browserified and transpiled for browser compatibility.
+- **Sass**: Write your stylesheets in Sass or SCSS and they're dynamically rendered as CSS.
 
 ## Installation
 

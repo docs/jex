@@ -1,7 +1,7 @@
 {
   "name": "@zeke/jex",
   "version": "1.0.0",
-  "description": "Breathe new life into old Jekyll sites",
+  "description": "Breathing new life into old Jekyll sites",
   "bin": {
     "jex": "cli.js"
   },
