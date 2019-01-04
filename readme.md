@@ -1,6 +1,6 @@
-# jex 🐢🚀
+# jex 🐢🚀 (Jekyll meets Express)
 
-> Breathing new life into old Jekyll sites
+> Breathe new life into old Jekyll sites
 
 `jex` is a Node.js module for building dynamic and static websites. It draws 
 inspiration from Jekyll, a Ruby tool for creating static websites.
@@ -22,10 +22,21 @@ Differences from Jekyll:
 - **Babel**: Write your browser code using the latest flavor of JavaScript (ES6, ES2018, etc), and it is dynamically browserified and transpiled for browser compatibility.
 - **Sass**: Write your stylesheets in Sass or SCSS and they're dynamically rendered as CSS.
 
+## Examples
+
+Wanna see what a Jex website looks like? Check out these examples:
+
+- [examples/basic](examples/basic) 
+- [examples/custom](examples/custom)
+
 ## Installation
 
+Jex is still in early development, and is not yet published to npm.
+
+You can install it directly from the GitHub repo:
+
 ```sh
-npm install @zeke/jex
+npm install jex/jex
 ```
 
 ## Usage
@@ -33,10 +44,6 @@ npm install @zeke/jex
 ```
 jex serve <sitedir>
 ```
-
-## Examples
-
-See [examples/basic](examples/basic) and [examples/custom](examples/custom).
 
 ## Rules
 

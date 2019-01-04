@@ -1,11 +1,11 @@
 {
-  "name": "@zeke/jex",
+  "name": "jex",
   "version": "1.0.0",
-  "description": "Breathing new life into old Jekyll sites",
+  "description": "Breathe new life into old Jekyll sites",
   "bin": {
     "jex": "cli.js"
   },
-  "repository": "https://github.com/zeke/jex",
+  "repository": "https://github.com/jex/jex",
   "author": "zeke",
   "license": "MIT",
   "dependencies": {
