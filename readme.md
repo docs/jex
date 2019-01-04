@@ -1,30 +1,29 @@
-# jex 🐢🚀 (Jekyll meets Express)
+# Jex 🐢🚀 
 
 > Breathe new life into old Jekyll sites
 
-`jex` is a Node.js module for building dynamic and static websites. It draws 
-inspiration from Jekyll, a Ruby tool for creating static websites.
+Jex is a Node.js module for building dynamic and static websites. It draws 
+inspiration from Jekyll, a Ruby tool for creating static websites. Jekyll meets 
+Express! 
 
 Similarities to Jekyll:
 
-- Write your web pages in Markdown (or HTML).
-- Add JSON and YML files to a data directory for use with your content.
-- Use the Liquid templating language for dynamic rendering.
-- Use YAML frontmatter to add metadata to your pages.
-- Use multiple layouts.
-- Add redirects when your URLs change.
+- Write your pages in [Markdown](https://en.wikipedia.org/wiki/Markdown).
+- Add metadata to your pages with [YAML frontmatter](https://jekyllrb.com/docs/front-matter/).
+- Add [Liquid templating](https://shopify.github.io/liquid/) to make your page content dynamic.
+- Add JSON and YML files to a data directory for use in your pages.
+- Support multiple layouts.
+- Support redirects for retired URL paths.
 
 Differences from Jekyll:
 
-- **Node.js**: jex is a Node.js module written in JavaScript. Jekyll is written in Ruby.
-- **Dynamic** or **Static**: jex apps can be exported as static websites, or they can be run as web servers with Express under the hood.
-- **Middleware**: jex provides hooks for 
-- **Babel**: Write your browser code using the latest flavor of JavaScript (ES6, ES2018, etc), and it is dynamically browserified and transpiled for browser compatibility.
-- **Sass**: Write your stylesheets in Sass or SCSS and they're dynamically rendered as CSS.
+- **Node.js** - Jex is a Node.js module written in JavaScript. (Jekyll is written in Ruby.)
+- **Dynamic** or **Static** - Jex apps can be exported as static websites, or they can be run as web servers with Express under the hood.
+- **Middleware** - Jex lets you bring your own Express/Connect middleware: Sass, Babel, etc.
 
 ## Examples
 
-Wanna see what a Jex website looks like? Check out these examples:
+To get an idea of what a Jex project looks like, check out these examples:
 
 - [examples/basic](examples/basic) 
 - [examples/custom](examples/custom)
@@ -45,90 +44,133 @@ npm install jex/jex
 jex serve <sitedir>
 ```
 
-## Rules
+## The Basics
 
-- **Pages** are written in Markdown. They live in the `pages` directory and must have an `.md` extension.
-- **Data** lives in the `/data` directory and can have `.json`, `.yml`, or `.yaml` extension.
-- **Layouts** live in the `/layouts` directory and must have an `.md` extension.
+
+### Pages
+
+- are written in Markdown
+- live in the `pages` directory
+- have an `.md` or `.html` extension
+
+### Data
+
+- lives in the `/data` directory
+- can be in `.json`, `.yml`, and `.yaml` files
+- can be nested within directories
+- is available in templates as `{{ data }}`
+
+### Layouts
+
+- live in the `/layouts` directory
+- have a `.md` or `.html` extension
+- must include a [Liquid] reference to `{{ content }}`
 
 ## Frontmatter
 
-- `redirects`
-- `permalinks`
+Frontmatter is YML that lives at the top of your pages. It looks like this:
+
+```
+---
+title: The Loudest Webpage
+volume: 11
+---
+
+Here begins the page content...
+```
+
+Jex has a few frontmatter properties with special meaning:
+
+- `redirects` (TODO: write docs)
+- `permalinks` (TODO: write docs)
 
 ## Configuration
 
-Configuration is not required! All of the options below have sensible defaults,
-but they can be overridden to fit the needs of your specific project.
+Jex has sensible defaults, and configuration is not required. If you're 
+starting a new Jex project, you can probably work within the defaults. 
+If, however, you're adapting an existing project to work with Jex,
+it may be necessary to configure it.
 
-To configure your jex app, create a `jex.js` file in the root of your project. 
-Here's an example:
+To configure your Jex app, create a `jex.js` file that looks like this:
 
 ```js
 module.exports = {
-  pagesDir: 'content/en',
-  dataDir: '.',
-  layoutsDir: 'my/layouts',
-  afterContext: (req, res, next) => {
-    req.context.modifiedByMiddleware = true
-    next()
-  },
-  beforeRender: (req, res, next) => {
-    req.context.page.modifiedByMiddleware = true
-    next()
-  }
+  // config goes here
 }
 ```
 
+See the config options below.
+
 ## Config Options
 
-- [`pagesDir`](#pagesdir)
-- [`dataDir`](#datadir)
-- [`layoutsDir`](#layoutsdir)
-- [`pageFileFilter()`](#pagefilefilterfilename)
-- [`dataFileFilter()`](#datafilefilterfilename)
+- [`pagesDirectory`](#pagesdirectory)
+- [`pagesIncludePatterns`](#pagesincludepatterns)
+- [`pagesExcludePatterns`](#pagesexcludepatterns)
+- [`dataDirectory`](#datadirectory)
+- [`dataIncludePatterns`](#dataincludepatterns)
+- [`dataExcludePatterns`](#dataexcludepatterns)
+- [`layoutsDirectory`](#layoutsdirectory)
+- [`layoutsIncludePatterns`](#layoutsincludepatterns)
+- [`layoutsExcludePatterns`](#layoutsexcludepatterns)
 - [`createPermalinks()`](#createpermalinkspage)
 - [`afterContextualize()`](#aftercontextualizereq-res-next)
 - [`beforeRender()`](#beforerenderreq-res-next)
 - [`redirects`](#redirects)
 
-### `pagesDir`
+### `pagesDirectory`
 
 Where the pages live.
 
 Default: `pages`
 
-### `dataDir`
+### `pagesIncludePatterns`
+
+An array of [glob patterns] to include when loading pages.
+
+Default: `['**/*.md', '**/*.markdown', '**/*.html']`
+
+### `pagesExcludePatterns`
+
+An array of [glob patterns] to exclude when loading pages.
+
+Default: `['**/node_modules/**', '**/vendor/**']`
+
+### `dataDirectory`
 
 Where the data files live.
 
 Default: `data`
 
-### `layoutsDir`
+### `dataIncludePatterns`
+
+An array of [glob patterns] to include when loading data.
+
+Default: `['**/*.md', '**/*.markdown', '**/*.html']`
+
+### `dataExcludePatterns`
+
+An array of [glob patterns] to exclude when loading data.
+
+Default: `['**/node_modules/**', '**/vendor/**']`
+
+### `layoutsDirectory`
 
 Where the layouts live.
 
 Default: `layouts`
 
-### `pageFileFilter(filename)`
+### `layoutsIncludePatterns`
 
-Filter function to customize which page files are included or ignored.
+An array of [glob patterns] to include when loading layouts.
 
-Default:
+Default: `['**/*.md', '**/*.markdown', '**/*.html']`
 
-```js
-(filename) => { return true }
-```
+### `layoutsExcludePatterns`
 
-### `dataFileFilter(filename)`
+An array of [glob patterns] to exclude when loading layouts.
 
-Filter function to customize which data files are included or ignored.
+Default: `['**/node_modules/**', '**/vendor/**']`
 
-Default:
-
-```js
-(filename) => { return true }
-```
 
 ### `createPermalinks(page)`
 
@@ -156,3 +198,7 @@ Object for defining redirects.
 ## License
 
 MIT
+
+
+[glob patterns]: https://en.wikipedia.org/wiki/Glob_(programming)
+[Liquid]: https://shopify.github.io/liquid/

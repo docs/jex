@@ -30,7 +30,8 @@
   "scripts": {
     "test": "jest && standard",
     "lint": "standard --fix",
-    "update-deps": "npx updtr"
+    "update-deps": "npx updtr",
+    "test-watch": "jest --watch --notify --notifyMode=change"
   },
   "standard": {
     "env": [
